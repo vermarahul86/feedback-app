@@ -37,8 +37,8 @@ return(
             <Route exact path='/' element={
                 <>
                     <FeedbackForm handleAdd={addFeedback}/>
-                    <FeedbackStats feedback={feedbackState}/>
-                    <FeedbackList feedback={feedbackState} handleDelete={deleteFeedback}/>
+                    <FeedbackStats /*feedback={feedbackState}*//>
+                    <FeedbackList /*feedback={feedbackState}*/ handleDelete={deleteFeedback}/>
                 </>
             }>
                 
