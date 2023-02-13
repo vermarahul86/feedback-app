@@ -2,7 +2,7 @@ import {useParams, Navigate, useNavigate, Routes, Route} from 'react-router-dom'
 
 function Post(){
 
-    const params = useParams()
+   // const params = useParams()
     const status = 200
 
     const navigate = useNavigate()
