@@ -12,7 +12,7 @@ function FeedbackForm(/*{handleAdd}*/){
     const[message, setMessage] = useState('')
     const[rating, setRating] = useState(10)
 
-    const{addFeedback, feedbackEdit} = useContext(FeedbackContext)
+    const{addFeedback, feedbackEdit, updateFeedback} = useContext(FeedbackContext)
 
     useEffect(()=>{
            if(feedbackEdit.edit === true){
@@ -45,10 +45,16 @@ function FeedbackForm(/*{handleAdd}*/){
                 text, rating
             }
 
-            //handleAdd(newFeedback)
-            addFeedback(newFeedback)
-
-            setText('')
+            if(feedbackEdit.edit === true){
+                feedbackEdit.edit = false
+                console.log(feedbackEdit.edit)
+                updateFeedback(feedbackEdit.item.id, newFeedback)
+            }
+            else{
+                //handleAdd(newFeedback)
+                addFeedback(newFeedback)
+            }
+        setText('')
         }
     }
 
