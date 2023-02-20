@@ -3,41 +3,41 @@ import FeedbackItem from "./FeedbackItem"
 import PropTypes  from 'prop-types'
 import { useContext } from 'react'
 import FeedbackContext from '../context/FeedbackContext'
+import Spinner from './shared/Spinner'
 
 
 function FeedbackList(/*{handleDelete}*/){
 
 
-    const {feedback} = useContext(FeedbackContext)
+    const {feedback, isLoading} = useContext(FeedbackContext)
 
-    if(!feedback || feedback.length === 0){
+    if(!isLoading && (!feedback || feedback.length === 0)){
         <p>No feedback yet</p>
     }
     
-    
-    return (<div className="feedback-list">
-        {
-            <AnimatePresence>
-                {
-                    feedback.map(
-                        (itemResult) => (
-                            <motion.div 
-                                key={itemResult.id}
-                                initial={{opacity:0}}
-                                animate={{opacity:1}}
-                                exit={{opacity:0}}
-                            >
-                                <FeedbackItem 
-                                    key={itemResult.id} item={itemResult}
-                                    /*handleDelete={handleDelete}*//>
-                            </motion.div>
-                        )
+    return isLoading ? <Spinner/> : (<div className="feedback-list">
+    {
+        <AnimatePresence>
+            {
+                feedback.map(
+                    (itemResult) => (
+                        <motion.div 
+                            key={itemResult.id}
+                            initial={{opacity:0}}
+                            animate={{opacity:1}}
+                            exit={{opacity:0}}
+                        >
+                            <FeedbackItem 
+                                key={itemResult.id} item={itemResult}
+                                /*handleDelete={handleDelete}*//>
+                        </motion.div>
                     )
-                }
-            </AnimatePresence>
-        }
-    </div>
-    )
+                )
+            }
+        </AnimatePresence>
+    }
+</div>)
+    
 
     /*return (<div className="feedback-list">
         {
